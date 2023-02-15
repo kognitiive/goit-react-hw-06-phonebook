@@ -18,6 +18,12 @@ export const ContactsList = () => {
     );
   };
 
+  if (contacts.length === 0) {
+    return(<Text>
+              You have no contacts yet
+            </Text>)
+  }
+
   return (
     <ContactListStl>
       {visibleContacts(contacts, filter).map(({ name, number, id }) => {

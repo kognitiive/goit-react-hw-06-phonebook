@@ -8,10 +8,11 @@ export const ContactForm = () => {
 
   const nameInputId = nanoid();
   const numberInputId = nanoid();
-  
+
   const handleSubmit = event => {
     event.preventDefault();
     const form = event.target;
+
     dispatch(addContact({ name: form.elements.name.value, number: form.elements.number.value}));
     form.reset();
   };
