@@ -10,9 +10,9 @@ const contactsSlice = createSlice({
     reducers: {
         addContact: {
             reducer(state, action) {
-                if (state.value.find(({name}) => name === action.payload.name)) {
-                    return alert(`${action.payload.name} is already in contacts`);
-                }
+                // if (state.value.find(({name}) => name === action.payload.name)) {
+                //     return alert(`${action.payload.name} is already in contacts`);
+                // }
                 state.value.push(action.payload)
             },
             prepare({ name, number }) {

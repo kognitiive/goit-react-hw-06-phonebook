@@ -1,10 +1,12 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import { addContact } from 'redux/contactsSlice';
+import { getContacts } from 'redux/selectors';
 import { Form, Input, Button } from './ContactForm.styled';
 
 export const ContactForm = () => { 
   const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
 
   const nameInputId = nanoid();
   const numberInputId = nanoid();
@@ -12,6 +14,15 @@ export const ContactForm = () => {
   const handleSubmit = event => {
     event.preventDefault();
     const form = event.target;
+    console.log()
+
+    if (contacts.find(({name}) => name.toLowerCase() === form.elements.name.value.toLowerCase())) {
+      return alert(`${form.elements.name.value} is already in contacts`);
+    }
+    
+    if (contacts.find(({number}) => number === form.elements.number.value)) {
+      return alert(`${form.elements.number.value} is already in contacts`);
+    }
 
     dispatch(addContact({ name: form.elements.name.value, number: form.elements.number.value}));
     form.reset();
